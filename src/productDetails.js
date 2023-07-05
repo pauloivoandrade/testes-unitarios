@@ -26,7 +26,7 @@
 
   Escreva pelo menos cinco testes para essa função no arquivo tests/productDetails.js para garantir que a implementação de productDetails está correta.
 */
-
+ 
 const productDetails = (firstProduct, secondProduct) => [
   {
     name: firstProduct,
