@@ -45,8 +45,22 @@ const calculator = (number1, number2) => {
  soma.div = div;
  soma.sub = sub;
  return soma;
-}; console.log(calculator(2, 2));
+}; console.log(calculator(2, 3));
 
-const arrayGenerator = (type, object) => {};
+const arrayGenerator = (type, object) => {
+  if (type === 'keys') {
+    return Object.keys(object);
+  }
+
+  if (type === 'values') {
+    return Object.values(object);
+  }
+
+  if (type === 'entries') {
+    return Object.entries(object);
+  }
+
+  return []; // Retorna um array vazio caso o tipo não seja válido
+};
 
 module.exports = { calculator, arrayGenerator };
