@@ -12,16 +12,18 @@
 */
 
 const average = (numbers) => {
+  if (numbers.length === 0) {
+    return undefined;
+  }
   let count = 0;
   let sum = 0;
 
   for (let index = 0; index < numbers.length; index += 1) {
     if (typeof numbers[index] !== 'number') {
-      throw new Error(undefined);
-    } else {
+      return undefined;
+    }
       count += 1;
       sum += numbers[index];
-    }
   }
 
   let media = sum / count;
