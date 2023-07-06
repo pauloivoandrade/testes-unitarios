@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/cognitive-complexity */
 /* eslint-disable max-len */
 // Siga as orientações do README!
 
@@ -5,13 +6,12 @@ const createMenu = (menuData) => {
     if (!menuData) {
       throw new Error('Menu não fornecido');
     }
-  
     const menu = {
       fetchMenu: () => menuData,
       consumption: [],
       order(item) {
         const { food, drinks } = this.fetchMenu();
-        if (Object.prototype.hasOwnProperty.call(food, item) || Object.prototype.hasOwnProperty.call(drinks, item)) {
+        if (food[item] || drinks[item]) {
           this.consumption.push(item);
         } else {
           return 'Item indisponível';
@@ -28,7 +28,7 @@ const createMenu = (menuData) => {
     };
   
     return menu;
-  };
+  };  
 module.exports = createMenu;
 
 // const createStudent = (name) => {
