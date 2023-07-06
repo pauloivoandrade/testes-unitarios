@@ -7,30 +7,39 @@ const createMenu = (menuData) => {
       throw new Error('Menu não fornecido');
     }
   
-    const menu = {
-      fetchMenu: () => menuData,
-      consumption: [],
-      order(item) {
-        const { food, drinks } = this.fetchMenu();
-        const isFoodAvailable = Object.prototype.hasOwnProperty.call(food, item);
-        const isDrinkAvailable = Object.prototype.hasOwnProperty.call(drinks, item);
-        if (isFoodAvailable || isDrinkAvailable) {
-          this.consumption.push(item);
-        } else {
-          return 'Item indisponível';
-        }
-      },
-      pay() {
-        const { food, drinks } = this.fetchMenu();
-        const totalPrice = this.consumption.reduce((total, item) => {
-          const price = food[item] || drinks[item] || 0;
-          return total + price;
-        }, 0);
-        return totalPrice * 1.1;
-      },
+    const fetchMenu = () => menuData;
+  
+    const consumption = [];
+  
+    const order = (item) => {
+      const { food, drinks } = fetchMenu();
+      const isFoodAvailable = Object.hasOwnProperty.call(food, item);
+      const isDrinkAvailable = Object.hasOwnProperty.call(drinks, item);
+      if (isFoodAvailable || isDrinkAvailable) {
+        consumption.push(item);
+      } else {
+        return 'Item indisponível';
+      }
     };
   
-    return menu;
+    const calculateTotalPrice = (menu) =>
+      consumption.reduce((total, item) => {
+        const price = menu[item] || 0;
+        return total + price;
+      }, 0);
+  
+    const pay = () => {
+      const { food, drinks } = fetchMenu();
+      const totalPrice = calculateTotalPrice(food) + calculateTotalPrice(drinks);
+      return totalPrice * 1.1;
+    };
+  
+    return {
+      fetchMenu,
+      consumption,
+      order,
+      pay,
+    };
   };
   
 module.exports = createMenu;
