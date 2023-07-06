@@ -15,13 +15,22 @@ const createMenu = (menuData) => {
       const { food, drinks } = fetchMenu();
       const isFoodAvailable = Object.hasOwnProperty.call(food, item);
       const isDrinkAvailable = Object.hasOwnProperty.call(drinks, item);
-      if (isFoodAvailable || isDrinkAvailable) {
-        consumption.push(item);
-      } else {
-        return 'Item indisponível';
+      switch (item) {
+        case 1:
+            isFoodAvailable(consumption.push(item));
+            break;
+        case 2:
+            isDrinkAvailable(consumption.push(item));
+            break;
+            default:
+                return 'Item indisponível';
       }
-    };
-  
+    //   if (isFoodAvailable || isDrinkAvailable) {
+    //     consumption.push(item);
+    //   } else {
+    //     return 'Item indisponível';
+      };
+    
     const calculateTotalPrice = (menu) =>
       consumption.reduce((total, item) => {
         const price = menu[item] || 0;
@@ -40,7 +49,8 @@ const createMenu = (menuData) => {
       order,
       pay,
     };
-  };
+    };
+  console.log(createMenu({ food: {}, drinks: {} }));
   
 module.exports = createMenu;
 
