@@ -6,12 +6,15 @@ const createMenu = (menuData) => {
     if (!menuData) {
       throw new Error('Menu não fornecido');
     }
+  
     const menu = {
       fetchMenu: () => menuData,
       consumption: [],
       order(item) {
         const { food, drinks } = this.fetchMenu();
-        if (food[item] || drinks[item]) {
+        const isFoodAvailable = Object.prototype.hasOwnProperty.call(food, item);
+        const isDrinkAvailable = Object.prototype.hasOwnProperty.call(drinks, item);
+        if (isFoodAvailable || isDrinkAvailable) {
           this.consumption.push(item);
         } else {
           return 'Item indisponível';
@@ -28,7 +31,8 @@ const createMenu = (menuData) => {
     };
   
     return menu;
-  };  
+  };
+  
 module.exports = createMenu;
 
 // const createStudent = (name) => {
