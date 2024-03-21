@@ -18,6 +18,5 @@ describe('10 - Implemente a função `createMenu`, bem como seus casos de teste'
     const menuData = { food: {}, drinks: {} };
     const menu = createMenu(menuData);
     expect(menu.fetchMenu()).toEqual(menuData);
-  });  
+  });
 });
- 

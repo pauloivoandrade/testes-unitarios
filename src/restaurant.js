@@ -17,7 +17,7 @@ const createMenu = (menuData) => {
       const isDrinkAvailable = Object.hasOwnProperty.call(drinks, item);
       switch (item) {
         case 1:
-            isFoodAvailable(consumption.push(item));
+            isFoodAvailable(consumption.push(item));    
             break;
         case 2:
             isDrinkAvailable(consumption.push(item));
@@ -25,10 +25,6 @@ const createMenu = (menuData) => {
             default:
                 return 'Item indisponível';
       }
-    //   if (isFoodAvailable || isDrinkAvailable) {
-    //     consumption.push(item);
-    //   } else {
-    //     return 'Item indisponível';
       };
     
     const calculateTotalPrice = (menu) =>
